@@ -5,7 +5,6 @@ const i18n = {
         navHome: "Главная",
         navMembers: "Участники",
         navDownloads: "Загрузки",
-        navChat: "Чат",
         navProfile: "Профиль",
         navSettings: "Настройки",
         applyTg: "Перейти",
@@ -30,7 +29,6 @@ const i18n = {
         copyPortAria: "Скопировать порт",
         noMembers: "Список участников пока пуст.",
         noFiles: "Файлы пока не добавлены.",
-        noMessages: "Сообщений пока нет.",
         dataLoadError: "Не удалось загрузить данные. Попробуйте позже.",
         supabaseNotConfigured: "Подключение к базе данных не настроено.",
         loginUnavailable: "Авторизация временно недоступна.",
@@ -46,12 +44,12 @@ const i18n = {
         tgCalloutDesc: "Подай заявку прямо сейчас и пройди отбор в основной состав.",
         applyNowBtn: "Перейти",
         membersTitle: "Состав клана",
-        membersSubtitle: "Список действующих бойцов, офицеров и руководства",
+        membersSubtitle: "Лидеры, офицеры и обычные участники клана",
         searchMemberPlaceholder: "Поиск участника...",
         filterAll: "Все",
         filterLeaders: "Лидеры",
         filterOfficers: "Офицеры",
-        filterMain: "Основной состав",
+        filterMain: "Участники",
         downloadsTitle: "Центр загрузок",
         downloadsSubtitle: "Официальные клиенты, скины и PvP-ресурспаки",
         searchDownloadPlaceholder: "Поиск файлов...",
@@ -59,9 +57,7 @@ const i18n = {
         catSkins: "Скины",
         catClients: "Клиенты",
         catResourcePacks: "Ресурспаки",
-        chatTitle: "Чат",
-        chatSubtitle: "Живое общение участников клана",
-        guestProfileWarning: "У вас гостевой режим. Функции сайта были автоматически ограничены. Просмотр состава, загрузки, чат и настройки недоступны.",
+        guestProfileWarning: "У вас гостевой режим. Функции сайта были автоматически ограничены. Просмотр состава, загрузки и настройки недоступны.",
         loginWithGoogle: "Войти через Google",
         profileId: "ID Пользователя",
         profileJoined: "Дата входа",
@@ -82,13 +78,13 @@ const i18n = {
         resetBtn: "Сбросить",
         footerDesc: "Официальное веб-сообщество клана ATTACK",
         authModalTitle: "Авторизация в ATTACK",
-        authModalDesc: "Войдите через ваш Google аккаунт для полного доступа ко всем функциям и чату",
+        authModalDesc: "Войдите через ваш Google аккаунт для полного доступа ко всем функциям сайта",
         btnGoogle: "Войти через Google",
         btnGuest: "Просмотр без входа",
         orText: "или",
-        authNotice: "В гостевом режиме просмотр участников, скачивание файлов, чат и настройки заблокированы.",
+        authNotice: "В гостевом режиме просмотр участников, скачивание файлов и настройки заблокированы.",
         restrictedTitle: "Доступ заблокирован для гостей",
-        restrictedDesc: "Просмотр состава, скачивание софта, чат и смена настроек доступны только авторизованным пользователям.",
+        restrictedDesc: "Просмотр состава, скачивание софта и смена настроек доступны только авторизованным пользователям.",
         applyViaTgModal: "Перейти",
         guestBadge: "ГОСТЬ",
         memberBadge: "УЧАСТНИК",
@@ -108,15 +104,12 @@ const i18n = {
         lockedMembersDesc: "Авторизуйтесь через ваш Google аккаунт для доступа к просмотру состава клана и просмотру статистики участников.",
         lockedDownloadsTitle: "Центр загрузок заблокирован для гостей",
         lockedDownloadsDesc: "Скачивание клиентов, скинов и ресурспаков разрешено исключительно авторизованным пользователям.",
-        lockedChatTitle: "Чат доступен только авторизованным бойцам",
-        lockedChatDesc: "Авторизуйтесь через Google аккаунт, чтобы отправлять и получать сообщения в реальном времени."
     },
     en: {
         splashLoading: "Loading...",
         navHome: "Home",
         navMembers: "Members",
         navDownloads: "Downloads",
-        navChat: "Chat",
         navProfile: "Profile",
         navSettings: "Settings",
         applyTg: "Apply via",
@@ -141,7 +134,6 @@ const i18n = {
         copyPortAria: "Copy server port",
         noMembers: "No members have been added yet.",
         noFiles: "No files have been added yet.",
-        noMessages: "No messages yet.",
         dataLoadError: "Could not load data. Please try again later.",
         supabaseNotConfigured: "Database connection is not configured.",
         loginUnavailable: "Sign in is temporarily unavailable.",
@@ -157,12 +149,12 @@ const i18n = {
         tgCalloutDesc: "Apply right now and get selected for the main roster.",
         applyNowBtn: "Open",
         membersTitle: "Clan Roster",
-        membersSubtitle: "List of active fighters, officers, and leadership",
+        membersSubtitle: "Clan leaders, officers, and regular members",
         searchMemberPlaceholder: "Search member...",
         filterAll: "All",
         filterLeaders: "Leaders",
         filterOfficers: "Officers",
-        filterMain: "Main Roster",
+        filterMain: "Regular Members",
         downloadsTitle: "Downloads Hub",
         downloadsSubtitle: "Official clients, custom skins, and PvP resource packs",
         searchDownloadPlaceholder: "Search files...",
@@ -170,9 +162,7 @@ const i18n = {
         catSkins: "Skins",
         catClients: "Clients",
         catResourcePacks: "Resource Packs",
-        chatTitle: "Chat",
-        chatSubtitle: "Live real-time messaging for clan members",
-        guestProfileWarning: "You are in Guest Mode. Member roster, downloads, chat, and settings are locked.",
+        guestProfileWarning: "You are in Guest Mode. Member roster, downloads, and settings are locked.",
         loginWithGoogle: "Sign in with Google",
         profileId: "User ID",
         profileJoined: "Join Date",
@@ -193,13 +183,13 @@ const i18n = {
         resetBtn: "Reset",
         footerDesc: "Official web community of ATTACK clan. All rights reserved © 2026.",
         authModalTitle: "Authorization at ATTACK",
-        authModalDesc: "Sign in with your Google account for full access to features and chat",
+        authModalDesc: "Sign in with your Google account for full access to site features",
         btnGoogle: "Sign in with Google",
         btnGuest: "Continue as Guest (Locked)",
         orText: "or",
-        authNotice: "In Guest mode, members roster, downloads, chat, and settings are locked.",
+        authNotice: "In Guest mode, members roster, downloads, and settings are locked.",
         restrictedTitle: "Access Locked for Guests",
-        restrictedDesc: "Viewing members, downloading software, chatting, and settings are restricted to verified Google users.",
+        restrictedDesc: "Viewing members, downloading software, and settings are restricted to verified Google users.",
         applyViaTgModal: "Apply via",
         guestBadge: "GUEST",
         memberBadge: "MEMBER",
@@ -219,8 +209,6 @@ const i18n = {
         lockedMembersDesc: "Sign in with Google to view clan roster and player statistics.",
         lockedDownloadsTitle: "Downloads Hub locked for guests",
         lockedDownloadsDesc: "Downloading clients, skins, and resource packs requires Google sign-in.",
-        lockedChatTitle: "Realtime Chat available for members only",
-        lockedChatDesc: "Sign in with Google to send and receive live messages in realtime."
     }
 };
 
@@ -243,15 +231,42 @@ const siteConfig = {
     }
 };
 
-const clanMembers = [];
-const downloadFiles = [];
+const clanMembers = [
+    {
+        name: 'Im_kruzes',
+        avatar: '',
+        role: 'leader',
+        status: 'online',
+    },
+    {
+        name: 'qwertyiiwwww',
+        avatar: '',
+        role: 'member',
+        status: 'online',
+    }
+];
+const downloadFiles = [
+    // {
+    //     id: 'pack1',
+    //     cat: 'resourcepacks',
+    //     title: 'Black 128x',
+    //     descRu: '',
+    //     descEn: '',
+    //     ext: 'ResourcesPack',
+    //     version: '1.0',
+    //     size: '6 MB',
+    //     rating: '2.4',
+    //     image: 'assets/packs/pack_img1.png',
+    //     url: 'https://github.com/jspbkv/attack/releases/download/v1.0/Black.128x.mcpack'
+    // }
+];
 const carouselCardsData = [
     {
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
         titleRu: "Отличный состав",
         titleEn: "Elite Roster",
-        descRu: "В клан отбираются только сильные игроки с высоким K/D и отличной дисциплиной в командных кланварах.",
-        descEn: "Only top players with high K/D and strict discipline in team clan wars are selected."
+        descRu: "В клан отбираются только сильные игроки и отличной дисциплиной в командных кланварах.",
+        descEn: "Only skilled players with strong team discipline are selected."
     },
     {
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
@@ -262,10 +277,10 @@ const carouselCardsData = [
     },
     {
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
-        titleRu: "Комьюнити и Поддержка",
+        titleRu: "Поддержка сообщества",
         titleEn: "Community & Support",
-        descRu: "Ежедневные совместные турниры, голосовая связь и активный закрытый Telegram чат клана.",
-        descEn: "Daily tournaments, voice comms, and active private Telegram chat for all members."
+        descRu: "Поддержка участников и связь с командой клана.",
+        descEn: "Member support and a direct connection with the clan team."
     },
     {
         icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
@@ -287,7 +302,6 @@ let state = {
     downloadCat: 'all',
     downloadSearch: '',
     carouselIndex: 0,
-    chatMessages: []
 };
 
 let supabaseClient = null;
@@ -332,8 +346,6 @@ function initSupabase() {
                     syncSupabaseUser(session.user);
                 }
             });
-
-            subscribeRealtimeChat();
         } catch (e) {
             console.warn("Supabase init error:", e);
         }
@@ -380,7 +392,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCarousel();
     renderMembers();
     renderDownloads();
-    renderChatMessages();
     initCarouselControls();
     updateLockState();
     updateServerStatus();
@@ -437,7 +448,7 @@ function saveState() {
 function updateLockState() {
     const isGuest = state.user.isGuest;
 
-    ['members', 'downloads', 'chat'].forEach(tab => {
+    ['members', 'downloads'].forEach(tab => {
         const icon = document.getElementById(`lock-${tab}-icon`);
         if (icon) icon.style.display = isGuest ? 'inline' : 'none';
     });
@@ -456,12 +467,6 @@ function updateLockState() {
         downloadsGrid.classList.toggle('hidden', isGuest);
     }
 
-    const chatLock = document.getElementById('chat-lock-overlay');
-    const chatContainer = document.getElementById('chat-container');
-    if (chatLock && chatContainer) {
-        chatLock.classList.toggle('hidden', !isGuest);
-        chatContainer.classList.toggle('hidden', isGuest);
-    }
 }
 
 function runSplashScreen() {
@@ -600,7 +605,7 @@ function toggleMobileMenu() {
 }
 
 function switchTab(tabId) {
-    if (state.user.isGuest && ['members', 'downloads', 'chat'].includes(tabId)) {
+    if (state.user.isGuest && ['members', 'downloads'].includes(tabId)) {
         openRestrictedModal();
         return;
     }
@@ -621,7 +626,6 @@ function switchTab(tabId) {
 
     if (tabId === 'members') renderMembers(true);
     if (tabId === 'downloads') renderDownloads(true);
-    if (tabId === 'chat') renderChatMessages();
     if (tabId === 'profile') renderProfile();
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -745,21 +749,16 @@ function doRenderMembers(grid) {
         return `
             <div class="member-card">
                 <div class="member-avatar-wrapper">
-                    <img src="${m.avatar}" alt="${m.name}" class="member-avatar">
+                    <div class="member-avatar" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="17" r="9" fill="currentColor"/>
+                            <path d="M7 42c1.5-9.2 7.8-14 17-14s15.5 4.8 17 14" fill="currentColor"/>
+                        </svg>
+                    </div>
                     ${m.status === 'online' ? '<span class="member-online-dot"></span>' : ''}
                 </div>
                 <h3 class="member-name">${m.name}</h3>
                 <span class="role-badge ${roleClass}">${roleName}</span>
-                <div class="member-stats">
-                    <div>
-                        <span class="member-stat-val">${m.kd}</span>
-                        <div class="member-stat-lbl">K/D Ratio</div>
-                    </div>
-                    <div>
-                        <span class="member-stat-val">${m.rating}</span>
-                        <div class="member-stat-lbl">ELO Rating</div>
-                    </div>
-                </div>
             </div>
         `;
     }).join('');
@@ -866,92 +865,6 @@ function triggerDownload(fileId) {
     saveState();
     renderProfile();
     showToast(i18n[state.lang].downloadSuccess + ` (${file.title})`, 'success');
-}
-
-function renderChatMessages() {
-    const container = document.getElementById('chat-messages');
-    if (!container || state.user.isGuest) return;
-
-    container.innerHTML = state.chatMessages.map(msg => {
-        const isSelf = msg.user_name === state.user.name;
-        return `
-            <div class="chat-msg ${isSelf ? 'msg-self' : ''}">
-                <img src="${msg.user_avatar}" alt="${msg.user_name}" class="chat-msg-avatar">
-                <div class="chat-msg-content">
-                    <div class="chat-msg-header">
-                        <span class="chat-msg-author">${msg.user_name}</span>
-                        <span class="chat-msg-time">${msg.time}</span>
-                    </div>
-                    <div class="chat-msg-body">${escapeHtml(msg.text)}</div>
-                </div>
-            </div>
-        `;
-    }).join('');
-
-    container.scrollTop = container.scrollHeight;
-}
-
-function sendChatMessage(event) {
-    if (event) event.preventDefault();
-
-    if (state.user.isGuest) {
-        openRestrictedModal();
-        return;
-    }
-
-    const input = document.getElementById('chat-input');
-    if (!input || !input.value.trim()) return;
-
-    const text = input.value.trim();
-    input.value = '';
-
-    const newMsg = {
-        id: Date.now(),
-        user_name: state.user.name,
-        user_avatar: state.user.avatar,
-        text: text,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    };
-
-    state.chatMessages.push(newMsg);
-    renderChatMessages();
-
-    if (supabaseClient) {
-        supabaseClient.from('messages').insert([
-            {
-                user_id: state.user.id,
-                user_name: state.user.name,
-                user_avatar: state.user.avatar,
-                content: text
-            }
-        ]).then(({ error }) => {
-            if (error) console.error("Supabase Chat Send Error:", error);
-        });
-    }
-}
-
-function subscribeRealtimeChat() {
-    if (!supabaseClient) return;
-
-    supabaseClient.channel('public:messages')
-        .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
-            const row = payload.new;
-            if (row.user_name !== state.user.name) {
-                state.chatMessages.push({
-                    id: row.id,
-                    user_name: row.user_name,
-                    user_avatar: row.user_avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${row.user_name}`,
-                    text: row.content,
-                    time: new Date(row.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                });
-                renderChatMessages();
-            }
-        })
-        .subscribe();
-}
-
-function escapeHtml(str) {
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 function renderUserBadge() {
