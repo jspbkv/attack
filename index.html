@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATTACK</title>
+    <meta name="description" content="Официальный киберспортивный портал клана ATTACK. Скины, клиенты, ресурспаки, игровой чат и софт.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <div class="splash-logo">
+                <svg class="brand-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 8L12 88H32L50 48L68 88H88L50 8Z" fill="url(#splash_grad)" />
+                    <path d="M35 58H65L50 25L35 58Z" fill="#0D0F14" />
+                    <path d="M28 72H72L80 88H20L28 72Z" fill="url(#splash_accent)" />
+                    <defs>
+                        <linearGradient id="splash_grad" x1="50" y1="8" x2="50" y2="88" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#FF3355"/>
+                            <stop offset="1" stop-color="#A80022"/>
+                        </linearGradient>
+                        <linearGradient id="splash_accent" x1="20" y1="72" x2="80" y2="88" gradientUnits="userSpaceOnUse">
+                            <stop offset="0" stop-color="#FF5577"/>
+                            <stop offset="1" stop-color="#FF3355"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="splash-title">ATTACK <span class="accent-text">CLAN</span></h1>
+            <p class="splash-subtitle" data-i18n="splashLoading">Загрузка...</p>
+            <div class="splash-progress-bar">
+                <div class="splash-progress-fill" id="splash-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app" class="app-container">
+
+        <header class="navbar">
+            <div class="nav-container">
+                <a href="#" class="nav-brand" onclick="switchTab('home'); return false;">
+                    <svg class="brand-icon" viewBox="0 0 100 100" fill="none">
+                        <path d="M50 8L12 88H32L50 48L68 88H88L50 8Z" fill="url(#nav_grad)"/>
+                        <path d="M35 58H65L50 25L35 58Z" fill="var(--bg-primary)"/>
+                        <defs>
+                            <linearGradient id="nav_grad" x1="50" y1="8" x2="50" y2="88" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#FF3355"/>
+                                <stop offset="1" stop-color="#99001C"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="brand-name">ATTACK</span>
+                </a>
+
+                <nav class="nav-menu">
+                    <button class="nav-link active" data-tab="home" onclick="switchTab('home')">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        <span data-i18n="navHome">Главная</span>
+                    </button>
+                    <button class="nav-link" data-tab="members" onclick="switchTab('members')">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span data-i18n="navMembers">Участники</span>
+                        <span class="lock-indicator" id="lock-members-icon"></span>
+                    </button>
+                    <button class="nav-link" data-tab="downloads" onclick="switchTab('downloads')">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span data-i18n="navDownloads">Загрузки</span>
+                        <span class="lock-indicator" id="lock-downloads-icon"></span>
+                    </button>
+                    <button class="nav-link" data-tab="chat" onclick="switchTab('chat')">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                        <span data-i18n="navChat">Чат</span>
+                        <span class="lock-indicator" id="lock-chat-icon"></span>
+                    </button>
+                    <button class="nav-link" data-tab="profile" onclick="switchTab('profile')">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span data-i18n="navProfile">Профиль</span>
+                    </button>
+                    <button class="nav-link" data-tab="settings" onclick="switchTab('settings')">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                        <span data-i18n="navSettings">Настройки</span>
+                    </button>
+                </nav>
+
+                <div class="nav-actions">
+                    <a href="https://t.me/attackn2" target="_blank" class="btn btn-tg">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.05.13.83.99z"/></svg>
+                        <span data-i18n="applyTg">Перейти</span>
+                    </a>
+                    <button id="user-nav-badge" class="user-avatar-button" type="button" onclick="switchTab('profile')" aria-label="Профиль"></button>
+                    <button class="hamburger-btn" id="hamburger-btn" aria-label="Открыть меню" onclick="toggleMobileMenu()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div id="mobile-drawer-backdrop" class="mobile-drawer-backdrop hidden" onclick="toggleMobileMenu()"></div>
+        <div id="mobile-drawer" class="mobile-drawer hidden">
+            <div class="drawer-header">
+                <div class="nav-brand">
+                    <svg class="brand-icon" viewBox="0 0 100 100" fill="none"><path d="M50 8L12 88H32L50 48L68 88H88L50 8Z" fill="#FF3355"/></svg>
+                    <span class="brand-name">ATTACK</span>
+                </div>
+                <button class="drawer-close" aria-label="Закрыть меню" onclick="toggleMobileMenu()">×</button>
+            </div>
+            <nav class="drawer-nav">
+                <button class="drawer-link active" data-tab="home" onclick="switchTab('home'); toggleMobileMenu();">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    <span data-i18n="navHome">Главная</span>
+                </button>
+                <button class="drawer-link" data-tab="members" onclick="switchTab('members'); toggleMobileMenu();">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    <span data-i18n="navMembers">Участники</span>
+                </button>
+                <button class="drawer-link" data-tab="downloads" onclick="switchTab('downloads'); toggleMobileMenu();">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span data-i18n="navDownloads">Загрузки</span>
+                </button>
+                <button class="drawer-link" data-tab="chat" onclick="switchTab('chat'); toggleMobileMenu();">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    <span data-i18n="navChat">Чат</span>
+                </button>
+                <button class="drawer-link" data-tab="profile" onclick="switchTab('profile'); toggleMobileMenu();">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span data-i18n="navProfile">Профиль</span>
+                </button>
+                <button class="drawer-link" data-tab="settings" onclick="switchTab('settings'); toggleMobileMenu();">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span data-i18n="navSettings">Настройки</span>
+                </button>
+            </nav>
+            <div class="drawer-footer space-y">
+                <a href="https://t.me/attackn2" target="_blank" class="btn btn-tg btn-block">
+                    <span data-i18n="applyTg">Перейти</span>
+                </a>
+            </div>
+        </div>
+
+        <main class="main-content" id="main-content">
+
+            <section id="view-home" class="tab-view active">
+                <div class="hero-banner">
+                    <div class="hero-backdrop"></div>
+                    <div class="hero-content">
+                        <div class="hero-tag" data-i18n="heroTag">CYBERSPORTS CLAN</div>
+                        <h1 class="hero-title">DOMINATE WITH <span class="gradient-text">ATTACK</span></h1>
+                        <p class="hero-description" data-i18n="heroDesc">
+                            Профессиональное сообщество, эксклюзивные клиенты, лучшие ресурспаки и сплоченное комьюнити. Покоряй новые вершины вместе с нами.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="https://t.me/attackn2" target="_blank" class="btn btn-primary btn-lg">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.05.13.83.99z"/></svg>
+                                <span data-i18n="joinTelegram">Вступить</span>
+                            </a>
+                            <button class="btn btn-outline btn-lg" onclick="openAuthModal()">
+                                <span data-i18n="loginWithGoogle">Авторизация Google</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="server-card" id="server-card" data-status="loading">
+                    <div class="server-card-header">
+                        <div>
+                            <span class="server-eyebrow" data-i18n="serverEyebrow">ПРИСОЕДИНЯЙСЯ К ИГРЕ</span>
+                            <h2 class="server-title" data-i18n="serverTitle">Игровой сервер</h2>
+                        </div>
+                        <div class="server-status" id="server-status" role="status" aria-live="polite">
+                            <span class="server-status-dot" aria-hidden="true"></span>
+                            <span id="server-status-text" data-i18n="serverLoading">Проверяем сервер...</span>
+                        </div>
+                    </div>
+                    <div class="server-details">
+                        <div class="server-detail">
+                            <span class="server-detail-label" data-i18n="serverIpLabel">IP-адрес</span>
+                            <div class="server-detail-value">
+                                <span class="server-address">play.breadixpe.net</span>
+                                <button class="server-copy-btn" type="button" onclick="copyServerValue('play.breadixpe.net', this)" data-i18n-aria-label="copyIpAria" aria-label="Скопировать IP-адрес">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                                    <span data-i18n="copyButton">Копировать</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="server-detail">
+                            <span class="server-detail-label" data-i18n="serverPortLabel">Порт</span>
+                            <div class="server-detail-value">
+                                <span class="server-address">19132</span>
+                                <button class="server-copy-btn" type="button" onclick="copyServerValue('19132', this)" data-i18n-aria-label="copyPortAria" aria-label="Скопировать порт">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+                                    <span data-i18n="copyButton">Копировать</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="server-card-footer">
+                        <div class="server-player-count">
+                            <span class="server-player-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </span>
+                            <span id="server-player-count">—</span>
+                            <span data-i18n="serverPlayersLabel">игроков онлайн</span>
+                        </div>
+                        <span class="server-updated" id="server-updated" data-i18n="serverAutoUpdate">Обновление каждые 5 минут</span>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="section-header">
+                        <div>
+                            <h2 class="section-title" data-i18n="carouselTitle">Ознакомление с кланом</h2>
+                            <p class="section-subtitle" data-i18n="carouselSubtitle">Ключевые преимущества и требования клана ATTACK</p>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn" id="carousel-prev" aria-label="Предыдущий слайд">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                            </button>
+                            <button class="carousel-btn" id="carousel-next" aria-label="Следующий слайд">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track" id="carousel-track">
+                        </div>
+                    </div>
+                    <div class="carousel-dots" id="carousel-dots"></div>
+                </div>
+
+                <div class="tg-callout-card">
+                    <div class="tg-callout-glow"></div>
+                    <div class="tg-callout-body">
+                        <div class="tg-badge">Информация</div>
+                        <h2 data-i18n="tgCalloutTitle">Хочешь стать частью ATTACK?</h2>
+                        <p data-i18n="tgCalloutDesc">Подай заявку прямо <strong class="highlight-text">сейчас</strong> и пройди отбор в основной состав.</p>
+                        <a href="https://t.me/attackn2" target="_blank" class="btn btn-primary">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.05.13.83.99z"/></svg>
+                            <span data-i18n="applyNowBtn">Перейти</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-members" class="tab-view">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title" data-i18n="membersTitle">Состав клана</h2>
+                        <p class="section-subtitle" data-i18n="membersSubtitle">Список действующих бойцов, офицеров и руководства</p>
+                    </div>
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" id="member-search" aria-label="Поиск участника" placeholder="Поиск участника..." data-i18n-placeholder="searchMemberPlaceholder" oninput="filterMembers()">
+                    </div>
+                </div>
+
+                <div class="filter-pills" id="member-role-filters">
+                    <button class="pill-btn active" data-role="all" onclick="setMemberFilter('all')" data-i18n="filterAll">Все</button>
+                    <button class="pill-btn" data-role="leader" onclick="setMemberFilter('leader')" data-i18n="filterLeaders">Лидеры</button>
+                    <button class="pill-btn" data-role="officer" onclick="setMemberFilter('officer')" data-i18n="filterOfficers">Офицеры</button>
+                    <button class="pill-btn" data-role="member" onclick="setMemberFilter('member')" data-i18n="filterMain">Основной состав</button>
+                </div>
+
+                <div id="members-lock-overlay" class="guest-lock-card hidden">
+                    <div class="lock-card-icon"></div>
+                    <h3 data-i18n="lockedMembersTitle">Список участников доступен только после авторизации</h3>
+                    <p data-i18n="lockedMembersDesc">Авторизуйтесь через ваш Google аккаунт для доступа к просмотру состава клана и просмотру статистики участников.</p>
+                    <div class="space-y" style="max-width: 320px; margin: 16px auto 0 auto;">
+                        <button class="btn btn-google btn-block" onclick="loginGoogle()">
+                            <span data-i18n="btnGoogle">Войти через Google</span>
+                        </button>
+                        <a href="https://t.me/attackn2" target="_blank" class="btn btn-tg btn-block">
+                            <span data-i18n="applyViaTgModal">Заявка</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="members-grid" id="members-grid">
+                </div>
+            </section>
+
+            <section id="view-downloads" class="tab-view">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title" data-i18n="downloadsTitle">Центр загрузок</h2>
+                        <p class="section-subtitle" data-i18n="downloadsSubtitle">Официальные клиенты, фирменные скины и PvP ресурспаки</p>
+                    </div>
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" id="download-search" aria-label="Поиск файлов" placeholder="Поиск файлов..." data-i18n-placeholder="searchDownloadPlaceholder" oninput="filterDownloads()">
+                    </div>
+                </div>
+
+                <div class="filter-pills" id="download-cat-filters">
+                    <button class="pill-btn active" data-cat="all" onclick="setDownloadCat('all')" data-i18n="catAll">Все файлы</button>
+                    <button class="pill-btn" data-cat="skins" onclick="setDownloadCat('skins')" data-i18n="catSkins">Скины</button>
+                    <button class="pill-btn" data-cat="clients" onclick="setDownloadCat('clients')" data-i18n="catClients">Клиенты</button>
+                    <button class="pill-btn" data-cat="resourcepacks" onclick="setDownloadCat('resourcepacks')" data-i18n="catResourcePacks">Ресурспаки</button>
+                </div>
+
+                <div id="downloads-lock-overlay" class="guest-lock-card hidden">
+                    <div class="lock-card-icon"></div>
+                    <h3 data-i18n="lockedDownloadsTitle">Центр загрузок заблокирован для гостей</h3>
+                    <p data-i18n="lockedDownloadsDesc">Скачивание клиентов, скинов и ресурспаков разрешено исключительно авторизованным пользователям.</p>
+                    <div class="space-y" style="max-width: 320px; margin: 16px auto 0 auto;">
+                        <button class="btn btn-google btn-block" onclick="loginGoogle()">
+                            <span data-i18n="btnGoogle">Войти через Google</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="downloads-grid" id="downloads-grid">
+                </div>
+            </section>
+
+            <section id="view-chat" class="tab-view">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title" data-i18n="chatTitle">Чат</h2>
+                        <p class="section-subtitle" data-i18n="chatSubtitle">Живое общение участников клана на базе Supabase Realtime</p>
+                    </div>
+                </div>
+
+                <div id="chat-lock-overlay" class="guest-lock-card hidden">
+                    <div class="lock-card-icon"></div>
+                    <h3 data-i18n="lockedChatTitle">Чат доступен только авторизованным бойцам</h3>
+                    <p data-i18n="lockedChatDesc">Авторизуйтесь через Google аккаунт, чтобы отправлять и получать сообщения в реальном времени.</p>
+                    <div class="space-y" style="max-width: 320px; margin: 16px auto 0 auto;">
+                        <button class="btn btn-google btn-block" onclick="loginGoogle()">
+                            <span data-i18n="btnGoogle">Войти через Google</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="chat-container" class="chat-card-wrapper">
+                    <div class="chat-messages-container" id="chat-messages">
+                    </div>
+                    <form id="chat-form" class="chat-input-bar" onsubmit="sendChatMessage(event)">
+                        <input type="text" id="chat-input" aria-label="Сообщение" placeholder="Напишите сообщение..." autocomplete="off">
+                        <button type="submit" class="btn btn-primary">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="view-profile" class="tab-view">
+                <div class="profile-card-container">
+                    <div class="profile-header-bg">
+                        <div class="profile-avatar-wrapper">
+                            <img id="profile-avatar" src="" alt="Avatar" class="profile-avatar-img">
+                            <span class="profile-status-badge" id="profile-status">Online</span>
+                        </div>
+                    </div>
+                    <div class="profile-body">
+                        <div class="profile-main-info">
+                            <h2 class="profile-name" id="profile-name">Гость</h2>
+                            <span class="role-badge" id="profile-role">Guest</span>
+                        </div>
+
+                        <div id="profile-guest-warning" class="profile-guest-banner hidden">
+                            <p data-i18n="guestProfileWarning">У вас гостевой режим. Функция просмотра состава, скачивания и чата заблокирована.</p>
+                            <button class="btn btn-google btn-block" onclick="loginGoogle()" data-i18n="loginWithGoogle">Войти через Google</button>
+                        </div>
+
+                        <div class="profile-stats-row">
+                            <div class="profile-stat">
+                                <span class="profile-stat-val" id="profile-id">#0000</span>
+                                <span class="profile-stat-lbl" data-i18n="profileId">ID Пользователя</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="profile-stat-val" id="profile-joined">2026-10-19</span>
+                                <span class="profile-stat-lbl" data-i18n="profileJoined">Дата входа</span>
+                            </div>
+                            <div class="profile-stat">
+                                <span class="profile-stat-val" id="profile-downloads-count">0</span>
+                                <span class="profile-stat-lbl" data-i18n="profileDownloads">Загрузок</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-details-list">
+                            <div class="detail-item">
+                                <span class="detail-label" data-i18n="profileStatusLabel">Статус доступа</span>
+                                <span class="detail-value" id="profile-access-level">Гость</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label" data-i18n="profileTgLabel">Связь</span>
+                                <a href="https://t.me/attackn2" target="_blank" class="detail-link">Перейти</a>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button class="btn btn-primary" id="profile-auth-btn" onclick="openAuthModal()">
+                                <span data-i18n="loginWithGoogle">Войти через Google</span>
+                            </button>
+                            <button class="btn btn-outline-danger hidden" id="profile-logout-btn" onclick="logout()">
+                                <span data-i18n="logoutBtn">Выйти из аккаунта</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-settings" class="tab-view">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title" data-i18n="settingsTitle">Настройки</h2>
+                        <p class="section-subtitle" data-i18n="settingsSubtitle">Персонализация внешнего вида и локализация</p>
+                    </div>
+                </div>
+
+                <div class="settings-list">
+                    <div class="setting-card">
+                        <div class="setting-info">
+                            <div class="setting-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="setting-title" data-i18n="settingLangTitle">Язык интерфейса</h3>
+                                <p class="setting-desc" data-i18n="settingLangDesc">Выберите предпочитаемый язык для всей системы</p>
+                            </div>
+                        </div>
+                        <div class="setting-control">
+                            <select id="lang-select" aria-label="Язык интерфейса" class="select-input" onchange="changeLanguage(this.value)">
+                                <option value="ru">Русский (RU)</option>
+                                <option value="en">English (EN)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <div class="setting-info">
+                            <div class="setting-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="setting-title" data-i18n="settingThemeTitle">Цветовая тема</h3>
+                                <p class="setting-desc" data-i18n="settingThemeDesc">Переключение однотонных темного оформления</p>
+                            </div>
+                        </div>
+                        <div class="setting-control">
+                            <div class="theme-options">
+                                <button class="theme-btn active" data-theme-val="default" onclick="changeTheme('default')">
+                                    <span class="theme-swatch default-swatch"></span>
+                                    <span>Midnight</span>
+                                </button>
+                                <button class="theme-btn" data-theme-val="oled" onclick="changeTheme('oled')">
+                                    <span class="theme-swatch oled-swatch"></span>
+                                    <span>OLED Black</span>
+                                </button>
+                                <button class="theme-btn" data-theme-val="cyber" onclick="changeTheme('cyber')">
+                                    <span class="theme-swatch cyber-swatch"></span>
+                                    <span>Crimson</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setting-card">
+                        <div class="setting-info">
+                            <div class="setting-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            </div>
+                            <div>
+                                <h3 class="setting-title" data-i18n="settingAnimTitle">Плавные анимации</h3>
+                                <p class="setting-desc" data-i18n="settingAnimDesc">Включить визуальные микро-эффекты и свечение</p>
+                            </div>
+                        </div>
+                        <div class="setting-control">
+                            <label class="switch">
+                                <input type="checkbox" id="anim-toggle" checked onchange="toggleAnimations(this.checked)">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+
+        <div class="mobile-nav hidden" aria-hidden="true">
+            <button class="mobile-nav-item active" data-tab="home" onclick="switchTab('home')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <span data-i18n="navHome">Главная</span>
+            </button>
+            <button class="mobile-nav-item" data-tab="members" onclick="switchTab('members')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                <span data-i18n="navMembers">Участники</span>
+            </button>
+            <button class="mobile-nav-item" data-tab="downloads" onclick="switchTab('downloads')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span data-i18n="navDownloads">Загрузки</span>
+            </button>
+            <button class="mobile-nav-item" data-tab="chat" onclick="switchTab('chat')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <span data-i18n="navChat">Чат</span>
+            </button>
+            <button class="mobile-nav-item" data-tab="profile" onclick="switchTab('profile')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <span data-i18n="navProfile">Профиль</span>
+            </button>
+            <button class="mobile-nav-item" data-tab="settings" onclick="switchTab('settings')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span data-i18n="navSettings">Настройки</span>
+            </button>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-brand">
+                    <div class="brand-logo-small">
+                        <svg viewBox="0 0 100 100" fill="none"><path d="M50 8L12 88H32L50 48L68 88H88L50 8Z" fill="#FF3355"/></svg>
+                        <span>ATTACK</span>
+                    </div>
+                    <p data-i18n="footerDesc">Официальное веб-сообщество клана ATTACK</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="auth-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeAuthModal()">×</button>
+            <div class="modal-header">
+                <svg class="modal-logo" viewBox="0 0 100 100" fill="none"><path d="M50 8L12 88H32L50 48L68 88H88L50 8Z" fill="#FF3355"/></svg>
+                <h3 class="modal-title" data-i18n="authModalTitle">Авторизация в ATTACK</h3>
+                <p class="modal-desc" data-i18n="authModalDesc">Войдите через ваш Google аккаунт для полного доступа ко всем функциям и чату</p>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-google btn-block" onclick="loginGoogle()">
+                    <svg class="btn-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+                    <span data-i18n="btnGoogle">Войти через Google</span>
+                </button>
+
+                <div class="modal-divider"><span data-i18n="orText">или</span></div>
+
+                <button class="btn btn-outline btn-block" onclick="loginGuest()">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span data-i18n="btnGuest">Продолжить как Гость (Заблокировано)</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <small data-i18n="authNotice">В гостевом режиме просмотр участников, скачивание файлов, чат и настройки заблокированы.</small>
+            </div>
+        </div>
+    </div>
+
+    <div id="restricted-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeRestrictedModal()">×</button>
+            <div class="modal-header">
+                <div class="icon-warning-circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+                <h3 class="modal-title" id="restricted-title-text" data-i18n="restrictedTitle">Доступ заблокирован для гостей</h3>
+                <p class="modal-desc" id="restricted-desc-text" data-i18n="restrictedDesc">Просмотр состава, скачивание софта, чат и смена настроек доступны только авторизованным пользователям.</p>
+            </div>
+            <div class="modal-body space-y">
+                <button class="btn btn-google btn-block" onclick="closeRestrictedModal(); loginGoogle();">
+                    <span data-i18n="loginWithGoogle">Войти через Google</span>
+                </button>
+                <a href="https://t.me/attackn2" target="_blank" class="btn btn-tg btn-block">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.55.84-1.12.52l-3.1-2.28-1.5 1.44c-.17.17-.31.31-.63.31l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.05.13.83.99z"/></svg>
+                    <span data-i18n="applyViaTgModal">Перейти</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="item-modal" class="modal-overlay hidden">
+        <div class="modal-card modal-lg">
+            <button class="modal-close" onclick="closeItemModal()">×</button>
+            <div id="item-modal-content">
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
